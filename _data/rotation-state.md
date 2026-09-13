@@ -18,5 +18,5 @@ full read/write contract.
 
 ## Current state
 
-- **last_category**: technology
-- **last_run_date**: 2026-09-16
+- **last_category**: science
+- **last_run_date**: 2026-09-13
