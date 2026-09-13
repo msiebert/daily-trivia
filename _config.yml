@@ -1,9 +1,9 @@
-title: 5 Things
+title: Daily Trivia
 description: >-
-  A personal daily-learning and trivia app. Each morning, five new facts
-  are generated and added to the central fact store; a quiz draws
+  A personal daily-learning and trivia app. Each morning, up to three new
+  facts are generated and added to the central fact store; a quiz draws
   from everything you've learned so far.
-baseurl: "/five-things"
+baseurl: "/daily-trivia"
 url: "https://msiebert.github.io"
 
 exclude:

@@ -14,9 +14,9 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 PORT=4000
-PID_FILE=/tmp/five-things-jekyll.pid
-LOG_FILE=/tmp/five-things-jekyll.log
-BASE_URL="http://127.0.0.1:${PORT}/five-things"
+PID_FILE=/tmp/daily-trivia-jekyll.pid
+LOG_FILE=/tmp/daily-trivia-jekyll.log
+BASE_URL="http://127.0.0.1:${PORT}/daily-trivia"
 
 start() {
   if [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then

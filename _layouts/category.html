@@ -24,7 +24,7 @@ layout: default
         <li class="archive-item">
           <a href="{{ entry.url | relative_url }}">
             <span class="archive-date">{{ entry.date | date: "%b %-d, %Y" }}</span>
-            <span class="archive-title">{% if entry.topic %}{{ entry.topic }}{% else %}Five things to learn{% endif %}</span>
+            <span class="archive-title">{% if entry.topic %}{{ entry.topic }}{% else %}Today's trivia{% endif %}</span>
           </a>
         </li>
       {% endif %}

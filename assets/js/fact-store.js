@@ -9,7 +9,7 @@
 
 const SITE_ROOT = new URL("../..", import.meta.url);
 const FACT_STORE_URL = new URL("assets/data/facts.jsonl", SITE_ROOT).href;
-const CACHE_KEY = "five-things:fact-store";
+const CACHE_KEY = "daily-trivia:fact-store";
 
 function today() {
   return new Date().toISOString().slice(0, 10);

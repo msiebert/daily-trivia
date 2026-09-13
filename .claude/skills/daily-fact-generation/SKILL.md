@@ -1,13 +1,16 @@
 ---
 name: daily-fact-generation
-description: Generates the day's 5 trivia facts for the 5 Things site — picks a topic via the category rotation, researches it, appends the facts to the central fact store, renders that day's static page, and advances the rotation state. Invoked once per morning by a scheduled Cowork task, with no other prompting.
+description: Generates the day's trivia facts (up to 3) for the Daily Trivia site — picks a topic via the category rotation, researches it, appends the facts to the central fact store, renders that day's static page, and advances the rotation state. Invoked once per morning by a scheduled Cowork task, with no other prompting.
 ---
 
 # Daily Fact Generation
 
-Produces one day's worth of content for 5 Things: five researched trivia
-facts on a single topic, appended to the central fact store and published
-as a static daily page.
+Produces one day's worth of content for Daily Trivia: up to three
+researched trivia facts on a single topic — only the most well-known and
+useful facts about it, nothing obscure — appended to the central fact
+store and published as a static daily page. If fewer than three facts meet
+that bar, publish fewer; never pad the count with weaker or more obscure
+material just to reach three.
 
 This skill is meant to be run **stand-alone**, with no extra instructions
 from the invoker beyond "run the daily fact generation skill." Everything
@@ -32,8 +35,8 @@ against those docs, not something to resolve by reading them mid-run.
 
 ## Context discipline
 
-`assets/data/facts.jsonl` grows by 5 lines every day and has no upper bound, so
-it is the one file in this skill that must never be read in full — doing
+`assets/data/facts.jsonl` grows by up to 3 lines every day and has no upper
+bound, so it is the one file in this skill that must never be read in full — doing
 so wastes tokens today and will eventually blow the context window
 outright. Every step below that touches it says exactly how to access it;
 the rule behind all of them is:
@@ -84,28 +87,26 @@ Run these steps in order. Do not skip or reorder them.
    When in doubt, treat it as not well-known: the grounding fact costs
    little and the failure mode of assuming too much prior knowledge is
    worse.
-3. If the topic is **not well-known** (per step 2), the first of the 5
-   facts is a **grounding/summary fact** rather than a "notable and
-   influential" one — see step 3 below for how it's written. Select the
-   remaining 4 (well-known topics: all 5) as the most **notable and
-   influential** facts about it — but explicitly favor genuine learning
-   over trivia the reader almost certainly already knows. This is a daily
-   "I actually learned something" product, not an elementary-school quiz.
-   - Reject candidates that are common knowledge or the first thing anyone
-     would say about the topic (e.g., for "Jupiter": "it's the largest
-     planet" is too obvious to use).
-   - Prefer facts that are specific, surprising, mechanistic, or
-     little-known but still verifiably significant — the kind of thing
-     that makes someone say "huh, I didn't know that" rather than "sure,
-     everyone knows that." (For "Jupiter": its Great Red Spot has been
-     measurably shrinking for over a century, or its immense gravity
-     deflects a significant share of comets that would otherwise threaten
-     the inner solar system, are the right altitude — specific and
-     non-obvious, but still meaningfully important, not obscure trivia for
-     its own sake.)
-   - Still avoid true obscurity/trivia-for-trivia's-sake — each fact should
-     be something a reasonably informed person would recognize as
-     important once they read it, even if they didn't know it before.
+3. If the topic is **not well-known** (per step 2), the first fact is a
+   **grounding/summary fact** rather than a "notable" one — see step 3
+   below for how it's written. Select the rest as the most **well-known
+   and useful** facts about the topic — the core, canonical things worth
+   knowing about it, the kind of fact a reasonably informed person would
+   recognize as genuinely important, not a specialist-only curiosity. This
+   is a daily learning product, not a trivia-for-trivia's-sake quiz.
+   - Favor facts that are significant, broadly useful to know, and
+     well-established — the kind of thing worth knowing about the topic,
+     not an obscure footnote. (For "Jupiter": that it's the largest planet
+     in the solar system, or that its Great Red Spot is a giant storm, are
+     the right altitude — important and recognizable, not obscure trivia
+     dug up for its own sake.)
+   - Reject candidates that are obscure, overly technical, or that only a
+     specialist would know or care about, even if they're accurate and
+     "interesting" in isolation.
+   - Select **up to 3** facts total (the grounding fact, if any, counts
+     toward this cap). If fewer than 3 candidates clear this bar for a
+     given topic, use fewer — do not pad the count with weaker or more
+     obscure material just to reach 3, and never exceed 3.
 4. Before finalizing each candidate fact, check `assets/data/facts.jsonl` for
    similar `question`/`answer` text via a **keyword grep** on distinctive
    terms from the candidate (e.g. `grep -i "great red spot"
@@ -116,7 +117,7 @@ Run these steps in order. Do not skip or reorder them.
 
 ### 3. Write each fact
 
-For each of the 5 facts, write:
+For each of the (up to 3) facts, write:
 
 - A short **question** (the trivia prompt).
 - A **one-word or one-name answer** — a single term, number, date, place,
@@ -162,23 +163,23 @@ For each of the 5 facts, write:
   - **This restriction is per-fact, not day-wide.** When the day's topic
     itself is the answer to one fact (typically fact 1, the grounding
     fact), only *that fact's* question needs to dance around the term.
-    The other 4 facts should refer to the topic by its normal name
-    whenever that's the clearest wording — avoiding it there just because
-    some other fact's answer happens to be the same term produces
-    awkward, vaguer questions ("these moisture corridors," "these
-    storms") for no benefit, since naming the topic doesn't leak an
-    answer it isn't. Only avoid a term in a given fact's question when
-    that term *is that fact's own answer*.
+    The other facts should refer to the topic by its normal name whenever
+    that's the clearest wording — avoiding it there just because some
+    other fact's answer happens to be the same term produces awkward,
+    vaguer questions ("these moisture corridors," "these storms") for no
+    benefit, since naming the topic doesn't leak an answer it isn't. Only
+    avoid a term in a given fact's question when that term *is that
+    fact's own answer*.
 - **Every question must stand alone, with no pronoun or vague-article
-  reference back to another fact.** Each of the 5 facts is shown
+  reference back to another fact.** Each of the day's facts is shown
   individually in the quiz UI (one card at a time, in random order,
-  outside the context of the other 4), so a question can never lean on
+  outside the context of the others), so a question can never lean on
   "this depression," "the mechanism," "the loom," "the novel," "the
   ship," "his," "its," or similar back-references that only resolve by
   having already read a different fact's question that day. Name the
   actual proper noun (the topic, a person, a place, a specific object)
   in every question that needs it, even if that means repeating the same
-  name across all 5 questions for the day. This is different from the
+  name across every question for the day. This is different from the
   leaked-answer rule above: naming the day's topic is required here
   except in the one fact whose own answer *is* that name (typically the
   grounding fact) — there, write the question so it still identifies the
@@ -186,10 +187,10 @@ For each of the 5 facts, write:
   the leaked-answer rule and the grounding-fact format below). Before
   finalizing each question, reread it in isolation, as if it were the
   only fact on the page, and confirm a reader could tell exactly what
-  it's about without having seen the other 4.
+  it's about without having seen the others.
 
 **If the topic was assessed as not well-known (step 2.2), fact 1 is a
-grounding fact instead of a "notable and influential" one:**
+grounding fact instead of a "well-known and useful" one:**
 
 - Its **question** describes/identifies the topic itself (e.g. "What
   14th-century West African emperor was so fabulously wealthy his Cairo
@@ -200,14 +201,14 @@ grounding fact instead of a "notable and influential" one:**
 - Its **answer** is the topic itself, in the same short form used
   elsewhere on the site (e.g. `Mansa Musa`, `Point Nemo`).
 - Its **explanatory paragraph** gives the basic orienting context (who/what
-  it is, when/where, why it matters) that facts 2-5 will build on — this
-  is the paragraph that makes the rest of the day's facts make sense to a
-  reader who has never heard of the topic before.
+  it is, when/where, why it matters) that the rest of the day's facts will
+  build on — this is the paragraph that makes the rest of the day's facts
+  make sense to a reader who has never heard of the topic before.
 
 This keeps every other fact that day free to go straight to the
-interesting, non-obvious material, while the reader is still grounded in
-what the five facts are actually about. Well-known topics skip this
-entirely — all 5 facts follow the normal notable-fact format above.
+well-known, useful material, while the reader is still grounded in what
+the day's facts are actually about. Well-known topics skip this entirely —
+all (up to 3) facts follow the normal well-known-and-useful format above.
 
 ### 4. Append to the fact store
 
@@ -219,9 +220,11 @@ entirely — all 5 facts follow the normal notable-fact format above.
    normally empty, since this runs once per morning; if it isn't, continue
    numbering after the highest existing sequence number for today rather
    than restarting at 1.
-3. Append 5 JSON lines to `assets/data/facts.jsonl`, one per fact, with:
-   - `id`: `YYYY-MM-DD-1` through `YYYY-MM-DD-5` (or continuing the
-     sequence per step 2).
+3. Append one JSON line per fact (up to 3, never more; fewer if fewer
+   candidates cleared the well-known-and-useful bar in step 2) to
+   `assets/data/facts.jsonl`, with:
+   - `id`: `YYYY-MM-DD-1` through `YYYY-MM-DD-N` (N being however many
+     facts were produced, up to 3), or continuing the sequence per step 2.
    - `question`, `answer`, `topic` (today's category slug), `date_added`
      (`YYYY-MM-DD`).
 4. Follow the existing file's exact JSONL conventions: one compact JSON
@@ -261,7 +264,7 @@ facts:
     explanation: >-
       {{ fact 2 explanatory paragraph }}
 
-  <!-- repeat entries for facts 3-5 -->
+  <!-- add a third entry only if a 3rd fact was produced (up to 3 total) -->
 ---
 ```
 

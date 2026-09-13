@@ -34,10 +34,10 @@ title: Home
 <section class="latest" id="latest">
   {% if daily_pages.size > 0 %}
     {% assign latest = daily_pages.first %}
-    <h2 class="section-heading">Today's five things</h2>
+    <h2 class="section-heading">Today's trivia</h2>
     <a class="latest-card" href="{{ latest.url | relative_url }}">
       <span class="latest-date">{{ latest.date | date: "%A, %B %-d, %Y" }}</span>
-      <span class="latest-title">{% if latest.topic %}{{ latest.topic }}{% else %}Five things to learn{% endif %}</span>
+      <span class="latest-title">{% if latest.topic %}{{ latest.topic }}{% else %}Today's trivia{% endif %}</span>
       <span class="latest-cta">Read today's entry &rarr;</span>
     </a>
   {% endif %}
@@ -48,7 +48,7 @@ title: Home
   <a class="latest-card discover-card" href="{{ random_old_entry.url | relative_url }}">
     <span class="hero-eyebrow discover-eyebrow">From the archive</span>
     <span class="latest-date">{{ random_old_entry.date | date: "%A, %B %-d, %Y" }}</span>
-    <span class="latest-title">{% if random_old_entry.topic %}{{ random_old_entry.topic }}{% else %}Five things to learn{% endif %}</span>
+    <span class="latest-title">{% if random_old_entry.topic %}{{ random_old_entry.topic }}{% else %}Today's trivia{% endif %}</span>
     <span class="latest-cta">Revisit this entry &rarr;</span>
   </a>
 </section>
@@ -61,7 +61,7 @@ title: Home
       <li class="archive-item">
         <a href="{{ entry.url | relative_url }}">
           <span class="archive-date">{{ entry.date | date: "%b %-d, %Y" }}</span>
-          <span class="archive-title">{% if entry.topic %}{{ entry.topic }}{% else %}Five things to learn{% endif %}</span>
+          <span class="archive-title">{% if entry.topic %}{{ entry.topic }}{% else %}Today's trivia{% endif %}</span>
         </a>
       </li>
     {% endfor %}

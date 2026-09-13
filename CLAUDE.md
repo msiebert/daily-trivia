@@ -1,4 +1,4 @@
-# 5 Things
+# Daily Trivia
 
 A Jekyll site (see `README.md` for what the product does). Notes here are
 about working in this repo as an agent.
@@ -20,7 +20,7 @@ bin/preview stop                  # stop the background server
   (`/opt/pw-browsers/chromium`), full page, at either desktop (1280x900) or
   `--mobile` (390x844) viewport. Read the resulting PNG with the Read tool
   to actually look at it — don't skip this for layout/CSS changes.
-- The server binds `_config.yml`'s `baseurl` (`/five-things`), matching how
+- The server binds `_config.yml`'s `baseurl` (`/daily-trivia`), matching how
   GitHub Pages serves the site, so what you see locally matches production
   — including whether internal links and asset paths resolve correctly.
 - `bin/preview start` is idempotent; safe to call before every `shot`.
@@ -32,11 +32,11 @@ so gems are ready before you need them.
 
 ## Content model
 
-- Each day's five facts live at `daily/YYYY-MM-DD/index.md`, front matter
-  only (`layout: daily`), rendered through `_layouts/daily.html` and
-  `_includes/fact-card.html`. Give every daily page a `date:` field (used
+- Each day's trivia (up to 3 facts) lives at `daily/YYYY-MM-DD/index.md`,
+  front matter only (`layout: daily`), rendered through `_layouts/daily.html`
+  and `_includes/fact-card.html`. Give every daily page a `date:` field (used
   for sorting) and, ideally, a `topic:` field (used as the display title on
-  the home page and daily header — falls back to "Five things to learn" if
+  the home page and daily header — falls back to "Today's trivia" if
   omitted).
 - The home page (`index.md`) lists daily entries dynamically by scanning
   `site.pages` for URLs under `/daily/` — never hardcode a link to a

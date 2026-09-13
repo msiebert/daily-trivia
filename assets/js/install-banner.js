@@ -1,5 +1,5 @@
 (function () {
-  var DISMISS_KEY = "five-things-install-banner-dismissed";
+  var DISMISS_KEY = "daily-trivia-install-banner-dismissed";
   var deferredPrompt = null;
 
   function isIosSafari() {

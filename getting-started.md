@@ -7,9 +7,10 @@ permalink: /getting-started/
   <p class="hero-eyebrow">New here?</p>
   <h1>Getting started with {{ site.title }}</h1>
   <p class="hero-description">
-    {{ site.title }} is a quiet daily habit: five new facts each morning, a
-    running collection of everything you've learned, and a quiz that
-    revisits what's starting to slip. Here's how to make the most of it.
+    {{ site.title }} is a quiet daily habit: up to three new facts each
+    morning, a running collection of everything you've learned, and a quiz
+    that revisits what's starting to slip. Here's how to make the most of
+    it.
   </p>
 </section>
 
@@ -20,12 +21,12 @@ permalink: /getting-started/
     <li class="guide-step">
       <span class="guide-step-num">1</span>
       <div class="guide-step-body">
-        <h3>Read today's five things</h3>
+        <h3>Read today's trivia</h3>
         <p>
-          Every morning a new entry goes up with five facts on a single
-          topic &mdash; a question, an answer, and a short explanation for
-          each. Find it on the <a href="{{ '/' | relative_url }}">home
-          page</a> under "Today's five things," or browse any past day in
+          Every morning a new entry goes up with up to three facts on a
+          single topic &mdash; a question, an answer, and a short
+          explanation for each. Find it on the <a href="{{ '/' | relative_url }}">home
+          page</a> under "Today's trivia," or browse any past day in
           the journal list below it.
         </p>
       </div>
@@ -78,7 +79,7 @@ permalink: /getting-started/
         <h3>Come back daily</h3>
         <p>
           The home page tracks your streak and recent accuracy once you've
-          signed in. Reading the day's five things and finishing the quiz
+          signed in. Reading the day's trivia and finishing the quiz
           both count toward your daily checkmark &mdash; the habit is the
           point.
         </p>
