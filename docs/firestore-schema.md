@@ -32,10 +32,11 @@ Each array holds objects of the same shape:
 { "id": "2026-07-31-1", "at": "2026-07-31T14:05:00.000Z" }
 ```
 
-| Subfield | Type   | Description |
-|----------|--------|-------------|
-| `id`     | string | A fact ID, matching `id` in `facts.jsonl` — see [`fact-store-schema.md`](fact-store-schema.md#id-format). No fact content (question/answer/topic) is ever duplicated into this document. |
-| `at`     | string | ISO 8601 timestamp of when this entry was added to this list. |
+| Subfield  | Type    | Description |
+|-----------|---------|-------------|
+| `id`      | string  | A fact ID, matching `id` in `facts.jsonl` — see [`fact-store-schema.md`](fact-store-schema.md#id-format). No fact content (question/answer/topic) is ever duplicated into this document. |
+| `at`      | string  | ISO 8601 timestamp of when this entry was first added to this list. Not updated when `removed` is toggled. |
+| `removed` | boolean | `collected` only. A soft delete written by the "My Facts" management page's Forget button. Absent or `false` means the fact is active; `true` means the user forgot it. The entry is never deleted outright, so the same button can flip `removed` back to `false` to restore it without losing the original `at`. Consumers that treat `collected` as "the user's facts" (the quiz's question pool, the collected-count stat) filter out entries with `removed: true`. |
 
 ## Example document
 
@@ -58,8 +59,11 @@ Each array holds objects of the same shape:
 This ticket (MAR-10) only creates the document with empty arrays on first
 sign-in. The read/write logic for each list is built elsewhere:
 
-- `collected` — written by the "add to my collection" button
-  ([MAR-11](https://linear.app/mark-siebert/issue/MAR-11)).
+- `collected` — entries are added by the "add to my collection" button
+  ([MAR-11](https://linear.app/mark-siebert/issue/MAR-11)); `removed` is
+  toggled by the "My Facts" management page (`/my-facts/`), which also
+  restores a previously-forgotten entry rather than adding a duplicate. See
+  `assets/js/collected-facts.js` for the shared read/write helpers both use.
 - `recentlyMissed` / `recentlyAdded` — written once per completed quiz,
   at grading time
   ([MAR-13](https://linear.app/mark-siebert/issue/MAR-13)).

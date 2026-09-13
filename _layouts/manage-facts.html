@@ -1,0 +1,16 @@
+---
+layout: default
+---
+<article class="manage-page">
+  <a class="back-link" href="{{ '/' | relative_url }}">&larr; Back home</a>
+
+  <header class="quiz-header">
+    <h1>My Facts</h1>
+    <p class="quiz-subtitle">Everything you've collected so far, grouped by topic.</p>
+  </header>
+
+  <div id="manage-root" data-manage-root>
+    <p class="quiz-status">Loading&hellip;</p>
+  </div>
+</article>
+<script type="module" src="{{ '/assets/js/manage-facts.js' | relative_url }}"></script>

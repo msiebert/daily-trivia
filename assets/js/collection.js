@@ -8,48 +8,25 @@
 // (UTC, matching the `at` timestamps already stored server-side) and kept
 // current as facts are added during that day. The cache is refetched once
 // a new day starts.
-import { auth, db } from "./auth.js";
+import { auth } from "./auth.js";
 import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import {
-  doc,
-  getDoc,
-  setDoc,
-  arrayUnion,
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+  isActive,
+  todayKey,
+  readCache,
+  writeCache,
+  dispatchCollectionCount,
+  loadUserDoc,
+  addOrRestore,
+} from "./collected-facts.js";
 
 const provider = new GoogleAuthProvider();
 const RESET_DELAY_MS = 2500;
-const CACHE_KEY = "five-things:collected";
 
 let currentUser = null;
-
-function todayKey() {
-  return new Date().toISOString().slice(0, 10);
-}
-
-function readCache() {
-  try {
-    return JSON.parse(localStorage.getItem(CACHE_KEY));
-  } catch (error) {
-    return null;
-  }
-}
-
-function writeCache(uid, ids) {
-  localStorage.setItem(
-    CACHE_KEY,
-    JSON.stringify({ uid: uid, date: todayKey(), ids: Array.from(ids) })
-  );
-}
-
-function dispatchCollectionCount(count) {
-  window.dispatchEvent(
-    new CustomEvent("five-things:collection-count", { detail: { count } })
-  );
-}
 
 function markButtonsAsAdded(ids) {
   document.querySelectorAll(".add-to-collection").forEach(function (button) {
@@ -70,9 +47,8 @@ async function syncCollectedState(user) {
   }
 
   try {
-    const snap = await getDoc(doc(db, "users", user.uid));
-    const collected = (snap.exists() && snap.data().collected) || [];
-    const ids = new Set(collected.map(function (entry) { return entry.id; }));
+    const userDoc = await loadUserDoc(user);
+    const ids = new Set((userDoc.collected || []).filter(isActive).map((entry) => entry.id));
     writeCache(user.uid, ids);
     markButtonsAsAdded(ids);
     dispatchCollectionCount(ids.size);
@@ -102,12 +78,7 @@ async function addToCollection(button) {
       user = result.user;
     }
 
-    const ref = doc(db, "users", user.uid);
-    await setDoc(
-      ref,
-      { collected: arrayUnion({ id: factId, at: new Date().toISOString() }) },
-      { merge: true }
-    );
+    await addOrRestore(user, factId);
 
     button.classList.remove("is-saving");
     button.classList.add("is-added");

@@ -703,6 +703,101 @@ main {
   color: var(--accent);
 }
 
+/* My Facts (manage collected facts) */
+
+.manage-topic-group {
+  margin-bottom: 2.25rem;
+}
+
+.manage-topic-heading {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.manage-fact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.manage-fact-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow);
+  transition: opacity 0.15s ease;
+}
+
+.manage-fact-card.is-removed {
+  opacity: 0.55;
+}
+
+.manage-fact-card .fact-question {
+  font-size: 1.05rem;
+  margin-bottom: 0.6rem;
+}
+
+.manage-fact-card .fact-answer {
+  margin-bottom: 0;
+}
+
+.manage-fact-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.manage-removed-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-right: auto;
+}
+
+.manage-forget {
+  font: inherit;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.manage-forget:hover {
+  border-color: #b3382c;
+  color: #b3382c;
+}
+
+.manage-forget.is-removed {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.manage-forget.is-removed:hover {
+  background: var(--accent);
+  color: var(--card-bg);
+}
+
+.manage-forget:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
 /* Getting started */
 
 .guide-steps {

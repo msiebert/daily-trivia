@@ -72,7 +72,9 @@ async function drawQuestions(userDoc) {
   // and a stale cached store would silently drop it from the pool even
   // though it's correctly in their `collected` list.
   const allFacts = await getAllFacts({ forceRefresh: true });
-  const collectedIds = new Set((userDoc.collected || []).map((e) => e.id));
+  const collectedIds = new Set(
+    (userDoc.collected || []).filter((e) => !e.removed).map((e) => e.id)
+  );
   const pool = allFacts.filter((fact) => collectedIds.has(fact.id));
   const missedMap = toMap(userDoc.recentlyMissed);
   const addedMap = toMap(userDoc.recentlyAdded);
@@ -98,8 +100,8 @@ async function gradeQuiz(user, questions, grades) {
     [...(userDoc.recentlyMissed || []), ...(userDoc.recentlyAdded || [])].map((e) => e.id)
   );
   const newlyDiscovered = (userDoc.collected || [])
-    .map((e) => e.id)
-    .filter((id) => !seenIds.has(id));
+    .filter((e) => !e.removed && !seenIds.has(e.id))
+    .map((e) => e.id);
 
   const nextAdded = (userDoc.recentlyAdded || [])
     .filter((e) => !quizzedIds.has(e.id))
