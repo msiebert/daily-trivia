@@ -1,8 +1,8 @@
-# 5 Things
+# Daily Trivia
 
-A personal daily-learning and trivia app: each morning, five new facts are
-generated and added to a central fact store; a quiz draws from the
-facts you've collected so far.
+A personal daily-learning and trivia app: each morning, up to three new
+facts are generated and added to a central fact store; a quiz draws from
+the facts you've collected so far.
 
 This repo is the Jekyll/GitHub Pages site and its data. There is no backend
 database — content lives in this repo as flat data files, and per-user

@@ -113,12 +113,12 @@ async function gradeQuiz(user, questions, grades) {
 function markCompletedLocally(total, correct) {
   const date = today();
   try {
-    localStorage.setItem(`five-things:quiz:completed:${date}`, new Date().toISOString());
+    localStorage.setItem(`daily-trivia:quiz:completed:${date}`, new Date().toISOString());
   } catch (error) {
     // localStorage unavailable — completion still happened, just isn't tracked locally.
   }
   window.dispatchEvent(
-    new CustomEvent("five-things:quiz-completed", {
+    new CustomEvent("daily-trivia:quiz-completed", {
       detail: { date, total, correct, missed: total - correct },
     })
   );

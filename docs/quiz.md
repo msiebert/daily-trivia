@@ -77,21 +77,21 @@ clobbering a concurrent change from the collection button.
 
 On successful grading:
 
-- `localStorage["five-things:quiz:completed:<YYYY-MM-DD>"]` is set to the
+- `localStorage["daily-trivia:quiz:completed:<YYYY-MM-DD>"]` is set to the
   completion ISO timestamp, keyed by local calendar date. This is the
   checkmark MAR-15 reads to know today's quiz is done.
-- A `five-things:quiz-completed` `CustomEvent` is dispatched on `window`
+- A `daily-trivia:quiz-completed` `CustomEvent` is dispatched on `window`
   with `detail: { date, total, correct, missed }`, for MAR-15's
   gamification stats update to listen for. No stats logic lives here yet —
   this is just the hook.
 
 That hook is consumed by `assets/js/stats.js` (MAR-15): it listens for
-`five-things:quiz-completed` on `window` — loaded on every page via
+`daily-trivia:quiz-completed` on `window` — loaded on every page via
 `_layouts/default.html`, not just `/quiz/`, so the completion is
 captured wherever the event fires — and appends `{date, total, correct}`
-to a bounded history under the `five-things:stats:v1` localStorage key.
+to a bounded history under the `daily-trivia:stats:v1` localStorage key.
 Any element with `data-stats-root` (currently the home page) renders the
-checkmark (read from `five-things:quiz:completed:<date>`), a streak
+checkmark (read from `daily-trivia:quiz:completed:<date>`), a streak
 count, and a small accuracy-trend sparkline computed from that history.
 Streak is computed by walking back from today (or yesterday, so a streak
 stays alive while today's quiz is still pending) counting consecutive

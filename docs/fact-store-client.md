@@ -8,10 +8,10 @@ and caches the result.
 
 ## Why the whole file, once
 
-The store stays small (roughly 5 records/day, each ~150 bytes of JSON), so
+The store stays small (up to 3 records/day, each ~150 bytes of JSON), so
 fetching it in full and caching client-side is cheaper than per-ID requests
-against a static site with no query backend. At 5 facts/day that's under
-10 KB/year — even after 10 years of daily use the file is under 3 MB, well
+against a static site with no query backend. At that rate that's well under
+10 KB/year — even after 10 years of daily use the file is a few MB, well
 within what a browser fetches and holds in memory or localStorage without
 issue. If usage patterns ever push well past that (e.g. much higher daily
 volume), the fetch-once approach would need revisiting, but nothing in the
@@ -32,7 +32,7 @@ it resolves correctly under the site's `baseurl` both locally
 ## Caching and invalidation
 
 - The parsed store (an object keyed by fact `id`, plus the date it was
-  fetched) is cached in `localStorage` under `five-things:fact-store`, and
+  fetched) is cached in `localStorage` under `daily-trivia:fact-store`, and
   mirrored in an in-memory variable for the lifetime of the page.
 - Every call to `loadFactStore()` compares the cached `fetchedDate` to
   today's date (local, `YYYY-MM-DD`). A mismatch — the daily generation job

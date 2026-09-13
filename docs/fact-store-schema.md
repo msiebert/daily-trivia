@@ -1,7 +1,7 @@
 # Central Fact Store Schema
 
 The central fact store is the single source of truth for all trivia facts in
-5 Things. It is a flat file committed to this repo — not a database — and is
+Daily Trivia. It is a flat file committed to this repo — not a database — and is
 written to by the daily generation agent (append-only) and read by the
 quiz (full-file client-side cache, looked up by `id`).
 
@@ -64,8 +64,8 @@ YYYY-MM-DD-N
 
 - `YYYY-MM-DD` is the date the fact was added.
 - `N` is a 1-based sequence number that **resets to 1 each day**.
-- Example: the five facts added on 2026-07-31 are IDs `2026-07-31-1` through
-  `2026-07-31-5`.
+- Example: the (up to three) facts added on 2026-07-31 are IDs
+  `2026-07-31-1` through `2026-07-31-3`.
 
 This format is chosen for human readability (the ID alone tells you when a
 fact was learned) over maximal compactness.
@@ -128,4 +128,4 @@ Pretty-printed for readability:
 ```
 
 See [`assets/data/facts.jsonl`](../assets/data/facts.jsonl) for a full sample file with
-five example records.
+example records.

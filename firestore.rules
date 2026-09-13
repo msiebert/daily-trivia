@@ -1,6 +1,6 @@
 rules_version = '2';
 
-// 5 Things is single-user-per-project: each person runs their own Firebase
+// Daily Trivia is single-user-per-project: each person runs their own Firebase
 // project, and only their own signed-in account should ever be able to
 // read or write their data. There is no sharing between users within a
 // project.

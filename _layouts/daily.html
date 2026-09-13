@@ -8,9 +8,9 @@ layout: default
     {% if page.date %}
       <p class="daily-date">{{ page.date | date: "%A, %B %-d, %Y" }}</p>
     {% endif %}
-    <h1>{{ page.topic | default: "Five things to learn" }}</h1>
+    <h1>{{ page.topic | default: "Today's trivia" }}</h1>
     {% if page.topic %}
-      <p class="daily-topic">Five things to learn</p>
+      <p class="daily-topic">Today's trivia</p>
     {% endif %}
   </header>
 

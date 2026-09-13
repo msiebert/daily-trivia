@@ -15,7 +15,7 @@ import {
   setDoc,
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
-export const CACHE_KEY = "five-things:collected";
+export const CACHE_KEY = "daily-trivia:collected";
 
 export function isActive(entry) {
   return !entry.removed;
@@ -45,7 +45,7 @@ export function writeCache(uid, activeIds) {
 
 export function dispatchCollectionCount(count) {
   window.dispatchEvent(
-    new CustomEvent("five-things:collection-count", { detail: { count } })
+    new CustomEvent("daily-trivia:collection-count", { detail: { count } })
   );
 }
 

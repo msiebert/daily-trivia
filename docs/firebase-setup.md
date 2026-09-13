@@ -1,6 +1,6 @@
 # Firebase Setup
 
-5 Things has no server-side database — your sign-in and progress data live
+Daily Trivia has no server-side database — your sign-in and progress data live
 entirely in a Firebase project that **you** create and own. This repo only
 ships client-side code that talks to whichever project's config you plug
 in. No coding experience is needed for any of the steps below; it's all
@@ -14,7 +14,7 @@ plan.
 1. Go to [console.firebase.google.com](https://console.firebase.google.com/)
    and sign in with the Google account you want to use.
 2. Click **Add project**.
-3. Give it a name (e.g. `five-things-yourname`). You can disable Google
+3. Give it a name (e.g. `daily-trivia-yourname`). You can disable Google
    Analytics for this project — it isn't used.
 4. Click **Create project** and wait for it to finish.
 
@@ -95,7 +95,7 @@ Google sign-in only works from domains you've explicitly authorized.
 
 1. Go to **Authentication** → **Settings** tab → **Authorized domains**.
 2. Click **Add domain** and add your GitHub Pages domain — for a repo
-   published at `https://your-username.github.io/five-things`, the domain
+   published at `https://your-username.github.io/daily-trivia`, the domain
    to add is `your-username.github.io`.
 
 ## Done

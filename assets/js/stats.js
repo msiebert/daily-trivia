@@ -1,16 +1,16 @@
 // Local-storage gamification stats: daily checkmark, streak, accuracy trend.
 // See docs/quiz.md#completion-side-effects for the completion
-// contract this consumes (MAR-13's `five-things:quiz-completed` event and
-// the `five-things:quiz:completed:<date>` checkmark key).
-const STATS_KEY = "five-things:stats:v1";
-const COMPLETION_PREFIX = "five-things:quiz:completed:";
-const COLLECTION_CACHE_KEY = "five-things:collected";
+// contract this consumes (MAR-13's `daily-trivia:quiz-completed` event and
+// the `daily-trivia:quiz:completed:<date>` checkmark key).
+const STATS_KEY = "daily-trivia:stats:v1";
+const COMPLETION_PREFIX = "daily-trivia:quiz:completed:";
+const COLLECTION_CACHE_KEY = "daily-trivia:collected";
 const HISTORY_LIMIT = 30;
 const TREND_LENGTH = 10;
 
 // Seeded from collection.js's cache (see assets/js/collection.js) so the
 // count is available on first paint; kept current after that by the
-// "five-things:collection-count" event collection.js dispatches whenever
+// "daily-trivia:collection-count" event collection.js dispatches whenever
 // the signed-in user's collected facts change.
 let collectionCount = loadCachedCollectionCount();
 
@@ -151,13 +151,13 @@ function renderAll() {
 }
 
 function init() {
-  window.addEventListener("five-things:quiz-completed", function (event) {
+  window.addEventListener("daily-trivia:quiz-completed", function (event) {
     const { date, total, correct } = event.detail;
     recordCompletion(date, total, correct);
     renderAll();
   });
 
-  window.addEventListener("five-things:collection-count", function (event) {
+  window.addEventListener("daily-trivia:collection-count", function (event) {
     collectionCount = event.detail.count;
     renderAll();
   });
