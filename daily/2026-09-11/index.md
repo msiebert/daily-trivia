@@ -22,21 +22,6 @@ facts:
       calves off, its iron oxide absorbs blue light while the ice itself
       absorbs red, letting green light escape.
   - id: "2026-09-11-2"
-    question: "What microscopic photosynthetic organisms explode into massive ocean blooms when nutrient-rich meltwater trails off drifting Antarctic icebergs, letting the icebergs act as a natural carbon-capture mechanism?"
-    answer: "Phytoplankton"
-    topic: nature
-    explanation: >-
-      Iron is often the single nutrient limiting phytoplankton growth in the
-      Southern Ocean's otherwise nutrient-rich but iron-starved waters. As
-      icebergs drift and melt, they release a slow trickle of iron-laden
-      meltwater and sediment that can seed blooms stretching for hundreds of
-      kilometers in their wake, visible from satellite. Because
-      phytoplankton absorb carbon dioxide as they grow, and much of that
-      carbon sinks to the seafloor when they die, researchers estimate this
-      "iceberg fertilization" effect helps draw down roughly 0.2 gigatons of
-      carbon a year, a natural process that could partly offset rising
-      emissions as warming produces more icebergs.
-  - id: "2026-09-11-3"
     question: "In what year was the International Ice Patrol established to track North Atlantic icebergs, less than a year after the Titanic disaster?"
     answer: "1913"
     topic: nature
@@ -51,23 +36,7 @@ facts:
       aerial reconnaissance, satellite imagery, and ocean modeling to
       forecast how far icebergs will drift into transatlantic shipping
       routes.
-  - id: "2026-09-11-4"
-    question: "What geographic unit, one of four dividing Antarctica by longitude, gives every tracked Antarctic iceberg the letter that starts its official name, like B-15 or A-68?"
-    answer: "Quadrant"
-    topic: nature
-    explanation: >-
-      The U.S. National Ice Center tracks Antarctic icebergs by splitting
-      the continent into four longitudinal quadrants, labeled A through D
-      moving counterclockwise: A covers the Bellingshausen/Weddell Sea
-      sector, B the Amundsen/Eastern Ross Sea, C the Western Ross
-      Sea/Wilkes Land, and D the Amery/Eastern Weddell Sea. When a large
-      iceberg calves, it's assigned the letter of the quadrant it broke
-      off from plus a sequential number, so B-15 was the 15th large iceberg
-      tracked from quadrant B. If that iceberg later splits apart, each
-      fragment inherits the parent's name with an added letter suffix, like
-      B-15A, letting scientists trace an iceberg's whole lineage as it
-      breaks up over years or decades.
-  - id: "2026-09-11-5"
+  - id: "2026-09-11-3"
     question: "The largest iceberg ever reliably recorded, B-15, calved from Antarctica's Ross Ice Shelf in 2000 with a surface area comparable in size to which Caribbean island nation?"
     answer: "Jamaica"
     topic: nature

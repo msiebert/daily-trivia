@@ -6,20 +6,6 @@ date: 2026-09-13
 topic: "Insulin"
 facts:
   - id: "2026-09-13-1"
-    question: "A 1921 coin toss between two University of Toronto medical students decided who would spend the summer helping Frederick Banting's pancreas experiments — who lost the toss and missed out on co-discovering insulin?"
-    answer: "Edward Clark Noble"
-    topic: science
-    explanation: >-
-      In the summer of 1921, Charles Best and fellow student Edward Clark
-      Noble flipped a coin to decide who would assist surgeon Frederick
-      Banting for the first month of his experimental work at the
-      University of Toronto. Best won the toss and went on to help isolate
-      insulin from dog pancreases alongside Banting, work that would make
-      him one of the most celebrated names in twentieth-century medicine.
-      Noble, who lost, took the second month instead and missed the
-      breakthrough entirely, a reminder of how much pure chance shaped who
-      ended up credited with saving millions of lives.
-  - id: "2026-09-13-2"
     question: "Frederick Banting, Charles Best, and James Collip patented their insulin extraction process in 1923, then sold that patent to the University of Toronto for what token sum, declaring the discovery belonged to the world?"
     answer: "$1"
     topic: science
@@ -34,7 +20,7 @@ facts:
       landmark case in the ethics of pharmaceutical patents, and it stands
       in sharp contrast to modern debates over the high price of
       insulin products a century later.
-  - id: "2026-09-13-3"
+  - id: "2026-09-13-2"
     question: "What 14-year-old Toronto boy became the first person ever treated with insulin, in January 1922, surviving an impurity-triggered allergic reaction to the first injection before a more purified second dose brought his blood sugar down within a day?"
     answer: "Leonard Thompson"
     topic: science
@@ -49,7 +35,7 @@ facts:
       blood sugar down to normal within a single day. He lived another
       thirteen years on insulin before dying of an unrelated illness, one
       of the first of millions of lives the treatment would go on to save.
-  - id: "2026-09-13-4"
+  - id: "2026-09-13-3"
     question: "When the 1923 Nobel Prize for insulin went only to Frederick Banting and John Macleod, excluding two key collaborators, Banting protested by splitting his prize money with which graduate student?"
     answer: "Charles Best"
     topic: science
@@ -64,18 +50,4 @@ facts:
       Nobel Foundation revised the official language describing the award,
       acknowledging the broader team's role in turning insulin into a
       usable medical treatment.
-  - id: "2026-09-13-5"
-    question: "Before settling on the Latin-derived name 'insulin,' what similar-sounding term did Banting and Best first give their pancreatic extract in the summer of 1921?"
-    answer: "Isletin"
-    topic: science
-    explanation: >-
-      When Banting and Best first began recording results from their dog
-      pancreas experiments in August 1921, they referred to their
-      extract simply as isletin, a homemade name reflecting where it came
-      from. The name was eventually replaced with insulin, coined from the
-      Latin insula for island, honoring the islets of Langerhans, the
-      clusters of pancreatic cells that produce the hormone. The rename
-      helped standardize the term as manufacturers scaled up production in
-      the following years, and it is the name that stuck in scientific and
-      commercial use ever since.
 ---
