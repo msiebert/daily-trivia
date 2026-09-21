@@ -18,5 +18,5 @@ full read/write contract.
 
 ## Current state
 
-- **last_category**: animals
-- **last_run_date**: 2026-09-20
+- **last_category**: food
+- **last_run_date**: 2026-09-21
