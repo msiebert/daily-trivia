@@ -18,5 +18,5 @@ full read/write contract.
 
 ## Current state
 
-- **last_category**: famous-people
-- **last_run_date**: 2026-09-26
+- **last_category**: technology
+- **last_run_date**: 2026-09-27
