@@ -18,5 +18,5 @@ full read/write contract.
 
 ## Current state
 
-- **last_category**: arts
-- **last_run_date**: 2026-09-28
+- **last_category**: mythology
+- **last_run_date**: 2026-09-29
